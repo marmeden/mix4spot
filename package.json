@@ -1,16 +1,29 @@
 {
   "name": "mix4spot",
   "version": "1.0.0",
-  "description": "",
+  "description": "mixer for the weekly discover and release radar",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marmeden/mix4spot.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marmeden/mix4spot/issues"
+  },
+  "homepage": "https://github.com/marmeden/mix4spot#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "axios": "^0.21.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "qs": "^6.7.0",
+    "querystring": "^0.2.1",
+    "request": "^2.88.2"
   }
 }
