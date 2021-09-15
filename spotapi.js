@@ -108,21 +108,27 @@ exports.updateMix = async (options, id, uris) => {
     console.log("update")
     console.log(id);
     console.log(uris);
-    options.method = 'GET'
-    options.url = `https://api.spotify.com/v1/playlists/`+id+`/tracks`
 
-    const respGetPL = await axios(options)
-    console.log(respGetPL);
-    if(respGetPL.data.items.length > 0) {
+    const respGetPL = await this.getPlaylistTracks(options, id)
+    if(respGetPL.length > 0) {
+        console.log("entra");
+        const tracksToRemove = respGetPL.map((t) => {
+            return  {
+                "uri": t.track.uri
+            }
+        })
+
         options.method = 'DELETE'
+        options.data = {
+            "tracks": tracksToRemove
+        }
         options.url = `https://api.spotify.com/v1/playlists/`+id+`/tracks`
-        const respEmptyPL = await axios(options)
+        const cleanPL = await axios(options)
     }
 
     options.method = 'POST'
     options.url = `https://api.spotify.com/v1/playlists/`+id+`/tracks` + uris
-
-    //const updatedPL = await axios(options)
+    const updatedPL = await axios(options)
 
     options.method = 'PUT'
     options.url = `https://api.spotify.com/v1/playlists/`+id 
@@ -131,6 +137,7 @@ exports.updateMix = async (options, id, uris) => {
         "description": mix4SpotPlaylist.desc,
         "public": false
     }
-    options.data = data
+    options.data = data 
+    const metaUpdatedPL = await axios(options)
     
 }
