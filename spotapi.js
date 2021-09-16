@@ -34,6 +34,11 @@ exports.runMix4Spot = async (options) => {
     // 4. Coger los tracks y sus URIS
         const nrTracks = await this.getPlaylistTracks(options, nrID)
         const nrTracksURIS = nrTracks.map((item) => item.track.uri)
+        let myImage = ''
+        if(nrTracks[0].track.album.images.length > 0) {
+            myImage = nrTracks[0].track.album.images[0].url;
+        }
+        
     // 5. Mezclar ambos
         const allTracksURIS = nrTracksURIS.concat(dwTracksURIS)
         let allTracksURISString = "?uris="
@@ -105,13 +110,9 @@ exports.createMix = async (options) => {
 }
 
 exports.updateMix = async (options, id, uris) => {
-    console.log("update")
-    console.log(id);
-    console.log(uris);
-
     const respGetPL = await this.getPlaylistTracks(options, id)
+
     if(respGetPL.length > 0) {
-        console.log("entra");
         const tracksToRemove = respGetPL.map((t) => {
             return  {
                 "uri": t.track.uri
@@ -140,4 +141,5 @@ exports.updateMix = async (options, id, uris) => {
     options.data = data 
     const metaUpdatedPL = await axios(options)
     
+    return metaUpdatedPL
 }
