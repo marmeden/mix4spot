@@ -81,8 +81,6 @@ exports.searchNRPLID = async (options) => {
 
 exports.searchMixPL = async (options) => {
     // LOOK FOR IT
-    //const plString = encodeURI(mix4SpotPlaylist.name.toLowerCase())
-    //options.url = 'https://api.spotify.com/v1/search?q='+plString+'&type=playlist'
     options.url = 'https://api.spotify.com/v1/me/playlists'
     const myPL = await axios(options);
     const myPLFound = myPL.data.items.find((pl) => pl.name === mix4SpotPlaylist.name)
