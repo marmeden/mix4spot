@@ -34,6 +34,7 @@ exports.runMix4Spot = async (options) => {
     // 4. Coger los tracks y sus URIS
         const nrTracks = await this.getPlaylistTracks(options, nrID)
         const nrTracksURIS = nrTracks.map((item) => item.track.uri)
+        // TODO: UPDATE AN IMAGE
         let myImage = ''
         if(nrTracks[0].track.album.images.length > 0) {
             myImage = nrTracks[0].track.album.images[0].url;
