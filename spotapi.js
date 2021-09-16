@@ -51,7 +51,6 @@ exports.runMix4Spot = async (options) => {
         let hasMixPL = await this.searchMixPL(options)
         if(!hasMixPL) {
             await this.createMix(options)
-            hasMixPL = await this.searchMixPL(options)
         }
     // 7. Añadir todos los URIs
         const updated = await this.updateMix(options, hasMixPL, allTracksURISString)

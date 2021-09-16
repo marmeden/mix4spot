@@ -42,7 +42,15 @@
  app.use(express.static(__dirname + '/public'))
     .use(cors())
     .use(cookieParser());
+
+
  
+ app.get('/test', function(req, res) {
+    console.log('test in console')
+    res.send('A test')
+ });
+
+
  app.get('/login', function(req, res) {
  
    var state = generateRandomString(16);
