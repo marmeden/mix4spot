@@ -48,9 +48,10 @@ exports.runMix4Spot = async (options) => {
     // 6. Buscar Nueva Playlist
         // 6a. Si existe vaciarla
         // 6b. Si no, crearla
-        const hasMixPL = await this.searchMixPL(options)
+        let hasMixPL = await this.searchMixPL(options)
         if(!hasMixPL) {
             await this.createMix(options)
+            hasMixPL = await this.searchMixPL(options)
         }
     // 7. Añadir todos los URIs
         const updated = await this.updateMix(options, hasMixPL, allTracksURISString)
